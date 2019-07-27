@@ -1,0 +1,35 @@
+@font-face {
+    font-family: van-icon;
+    src: url("van-icon.ttf?0f9f4e49") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="van-icon"], [class*=" van-icon"] {
+    font-family: 'van-icon' !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+}
+
+
+.van-icon-block::before {
+    content: "\ea01";
+}
+
+.van-icon-blueprint::before {
+    content: "\ea02";
+}
+
+.van-icon-building::before {
+    content: "\ea03";
+}
+
+.van-icon-globe::before {
+    content: "\ea04";
+}
+
+.van-icon-position-active::before {
+    content: "\ea05";
+}
+
