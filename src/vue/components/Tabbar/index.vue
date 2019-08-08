@@ -13,8 +13,8 @@
 		TabbarItem
 	} from 'vant';
 	
-	import EventBus from '../../event-bus/index.js';
-	import { TABBAR_CHANGE } from '../../../events/events.js'
+	// import EventBus from '../../event-bus/index.js';
+	// import { TABBAR_CHANGE } from '../../../events/events.js'
 	
 	export default {
 		data() {
@@ -85,8 +85,6 @@
 					if (tab.pathName == name) {
 						this.active = i;
 						//发送tabbarchange 事件
-						this.$bus.$emit(TABBAR_CHANGE, [tab.name]);
-						
 						return false;
 					}
 				});
