@@ -1,9 +1,11 @@
 {
   "name": "sand-table",
   "version": "1.0.0",
+  "description": "Liosixer project",
+  "author": "刘绍雄 <liosixer@outlook.com>",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --disableHostCheck=true",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "mock": "json-server ./mock/db.json"
@@ -13,9 +15,11 @@
     "axios": "^0.18.0",
     "dayjs": "^1.7.7",
     "lodash": "^4.17.11",
-    "vant": "^1.6.24",
+    "swiper": "^4.5.0",
+    "vant": "^2.1.2",
     "vee-validate": "^2.1.4",
     "vue": "^2.5.17",
+    "vue-awesome-swiper": "^2.6.7",
     "vue-router": "^3.0.1",
     "vuelidation": "^1.1.0"
   },

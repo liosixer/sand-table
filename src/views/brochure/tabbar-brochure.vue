@@ -1,48 +1,67 @@
 <template>
-	<van-swipe :autoplay="3000" vertical>
-		<van-swipe-item v-for="(image, index) in images" :key="index" >
-			<img v-lazy="image" width="100%" height="100%" />
-			
+	<van-swipe :touchable="true" :loop="true" :vertical="true">
+		<van-swipe-item v-for="(image, index) in images" :key="index">
+			<img class="brochure_image" v-lazy="image" />
 		</van-swipe-item>
 	</van-swipe>
 </template>
 
 <script>
-	import {
-		Swipe,
-		SwipeItem
-	} from 'vant';
-	
-	
+// require styles
+import Vue from 'vue';
+import { Swipe, SwipeItem } from 'vant';
 
-	export default {
-		data() {
-			return {
-				images: [
-					'//59.110.166.21:15015/sand_table/company/company_01.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_02.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_03.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_04.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_05.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_06.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_07.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_08.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_09.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_10.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_11.jpg',
-					'//59.110.166.21:15015/sand_table/company/company_12.jpg'
-				]
-			}
-		},
-		methods: {
-		},
+export default {
+	data() {
+		return {
+			images: []
+		};
+	},
+	methods: {},
 
-		components: {
-			[Swipe.name]: Swipe,
-			[SwipeItem.name]: SwipeItem
+	created() {
+		this.images = [];
+		for (var i = 1; i < 13; i++) {
+			var end = (i < 10 ? '0' + i.toString() : i.toString()) + '.jpg';
+			this.images.push(require('@/assets/images/company/company_' + end));
 		}
+	},
+
+	components: {
+		[Swipe.name]: Swipe,
+		[SwipeItem.name]: SwipeItem
 	}
+};
 </script>
 
-<style>
+<style scoped="scoped">
+
+.brochure_image {
+	position:absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.brochure_image[lazy=loading] {
+/*your style here*/
+	width: 2rem;
+	height: 2rem;
+	text-align: center;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.brochure_image[lazy=error] {
+/*your style here*/
+	width: auto;
+	text-align: center;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.brochure_image[lazy=loaded] {
+/*your style here*/
+}
+	
 </style>
+

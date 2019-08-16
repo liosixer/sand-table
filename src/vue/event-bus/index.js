@@ -13,7 +13,6 @@ export default {
 					const isArr = Array.isArray(val);
 					if (isArr) {
 						this.item_list = val;
-						console.log("我是EventBus", val.toString());
 					} else {
 						throw Error('item_list必须为数组');
 					}
