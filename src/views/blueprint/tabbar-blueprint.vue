@@ -1,19 +1,20 @@
 <template>
-	<div>
+	<v-touch 
+	v-on:swiperight="onSwipeRight" 
+	>
 		<van-row>
 			<van-tabs v-model="active" animated swipeable @click="onClick" @change="onChange">
 				<van-tab v-for="image in images" :key="image.url" :title="image.name">
-					<van-image width="100%" height="20rem" lazy-load :src="image.url" @click="onImagePreview(image)" />
+					<van-image class="load_image" lazy-load :src="image.url" @click="onImagePreview(image)" />
 				</van-tab>
 			</van-tabs>
 		</van-row>
 		
-		
-		
 		<van-popup v-model="popupShow">
 			<van-image width="24rem" height="20rem" fit="fill" :src="popup_url" />
 		</van-popup>
-	</div>
+		  </div>
+	</v-touch>
 	
 	
 </template>
@@ -21,20 +22,26 @@
 <script>
 	import { Tab, Tabs, Image, Row, Col, Skeleton, Panel, Popup  } from 'vant';
 	
+	// import {Tabs, TabPane, ScrollView} from 'mand-mobile';
+	
 	export default {
 		data() {
 			return {
 				active: 0,
-				images: [
-					{url: require('@/assets/images/blueprint/blueprint_01.jpg'), name:"户型A"},
-					{url: require('@/assets/images/blueprint/blueprint_02.jpg'), name:"户型B"},
-					{url: require('@/assets/images/blueprint/blueprint_03.jpg'), name:"户型C"},
-					{url: require('@/assets/images/blueprint/blueprint_04.jpg'), name:"户型D"},
-					{url: require('@/assets/images/blueprint/blueprint_05.jpg'), name:"户型E"}
-				],
 				popupShow: false,
 				popup_url: ""
 			};
+		},
+		computed:{
+			images(){
+				var _images = [];
+				for (var i = 1; i < 5; i++) {
+					var end = (i < 10 ? '0' + i.toString() : i.toString()) + '.jpg';
+					var _name = "户型:" + i;
+					_images.push({url:require('@/assets/images/blueprint/blueprint_' + end), name:_name});
+				}
+				return _images;
+			}
 		},
 		methods: {
 			onClick(name, title) {
@@ -46,11 +53,15 @@
 			onImagePreview(image){
 				this.popupShow = true;
 				this.popup_url = image.url;
+			},
+			onSwipeRight(e){
+				//阻止页面左滑跳转
 			}
 		},
 		mounted() {
+			// console.log(images());
 			// this.loading = false;
-			console.log(blueprints);
+			// console.log(blueprints);
 		},
 		components: {
 			[Tab.name]: Tab,
@@ -60,10 +71,12 @@
 			[Row.name]: Row,
 			[Skeleton.name]: Skeleton,
 			[Panel.name]: Panel,
-			[Popup.name]: Popup
+			[Popup.name]: Popup,
 		}
 	};
 </script>
 
-<style>
+<style scoped="scoped">
+
+
 </style>
