@@ -4,9 +4,9 @@
 			<img ref="image_bg" :style="'opacity: ' + (loaded - 0)" @load="sourceLoaded" :src="bg" />
 			
 			<img class="position_image" ref="image_road" v-show="road.flag" :style="'opacity: ' + (loaded + 1)" :src="road.url"/>
-			<!-- <img v-show="road.flag" :style="'opacity: ' + (loaded + 2)" @load="sourceLoaded" :src="plazza.url"> -->
+			<img class="position_image" ref="image_plaza" v-show="plaza.flag" :style="'opacity: ' + (loaded + 1)" :src="road.url"/>
 			<img class="position_image" ref="image_school" v-show="school.flag" :style="'opacity: ' + (loaded + 3)" :src="school.url"/>
-			<img class="position_image" ref="image_train" v-show="train.flag" :style="'opacity: ' + (loaded + 4)" :src="train.url"/>
+			<img class="position_image" ref="image_hospital" v-show="hospital.flag" :style="'opacity: ' + (loaded + 4)" :src="hospital.url"/>
 			<img class="position_image" ref="image_metro" v-show="metro.flag" :style="'opacity: ' + (loaded + 5)" :src="metro.url"/>
 			<img class="position_image" ref="image_commerce" v-show="commerce.flag" :style="'opacity: ' + (loaded + 6)" :src="commerce.url"/>
 		</scale-box>
@@ -33,9 +33,9 @@ export default {
 			loaded: false,
 			bg: require('@/assets/images/position/position_bg.jpg'),
 			road: { flag: false, title: '道路', url: require('@/assets/images/position/position_road.png') },
-			// plazza: { flag: false, title: '广场', url: require('@/assets/images/position/position_plazza.png') },
+			plaza: { flag: false, title: '广场', url: require('@/assets/images/position/position_plaza.png') },
 			school: { flag: false, title: '学校', url: require('@/assets/images/position/position_school.png') },
-			train: { flag: false, title: '火车', url: require('@/assets/images/position/position_train.png') },
+			hospital: { flag: false, title: '医院', url: require('@/assets/images/position/position_hospital.png') },
 			metro: { flag: false, title: '地铁', url: require('@/assets/images/position/position_metro.png') },
 			commerce: { flag: false, title: '商业', url: require('@/assets/images/position/position_commerce.png') }
 		};
@@ -68,8 +68,8 @@ export default {
 					active = this.school.flag;
 					break;
 				case '火车':
-					this.train.flag = !this.train.flag;
-					active = this.train.flag;
+					this.hospital.flag = !this.hospital.flag;
+					active = this.hospital.flag;
 					break;
 				case '地铁':
 					this.metro.flag = !this.metro.flag;
@@ -81,13 +81,11 @@ export default {
 					break;
 			}
 			args.color = active ? "#000" : "#999";
-		})
+		});
 	},
 	mounted() {
-		// this.$refs.viewer.$viewer.show();
-		console.log("[innerHeight]", window.innerHeight);
-		console.log("[availHeight]", screen.availHeight);
-		// this.$refs.button_group.style.offsetX
+		this.$refs.scaleBox.originalSizeText = "原始尺寸";
+		this.$refs.scaleBox.fitPageText = "重置";
 	},
 	updated() {
 		// this.$refs.scaleBox.update();

@@ -7,7 +7,6 @@
 		</van-swipe> -->
 		
 		<md-swiper 
-			ref="swiper"
 			:default-index="0"
 			:dragable="true"
 			:autoplay="0"
@@ -50,15 +49,12 @@ export default {
 	},
 
 	created() {
-		// this.$refs.my-swiper.height = "200px";
-		
 		this.images = this.onGroupImages();
 	},
 	
 	mounted() {
 		//渲染的时候计算当前高度
 		this.onResize();
-		
 	},
 	
 	updated() {
@@ -81,8 +77,6 @@ export default {
 	},
 	
 	components: {
-		// [Swipe.name]: Swipe,
-		// [SwipeItem.name]: SwipeItem,
 		[Swiper.name]: Swiper,
 		[SwiperItem.name]: SwiperItem,
 	}

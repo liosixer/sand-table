@@ -18,8 +18,8 @@ export default {
 	data() {
 		return {
 			active: 2,
-			world: { title: '世界区位', disabled: false, show: false },
-			gat: { title: '港澳台区位', disabled: false, show: false },
+			world: { title: '省域区位', disabled: false, show: false },
+			gat: { title: '市域区位', disabled: false, show: false },
 			project: { title: '项目区位', disabled: false, show: true }
 		};
 	},

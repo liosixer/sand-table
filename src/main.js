@@ -36,6 +36,10 @@ Vue.use(VueTouch, {name: 'v-touch'});
 import VueFab from 'vue-float-action-button';
 Vue.use(VueFab);
 
+//添加移动端touch机制
+import vueTouch from 'kim-vue-touch';
+Vue.use(vueTouch);
+
 // FastClick.attach(document.body);
 // Vue.use(VueCountdown);
 // Vue.use(axios);
