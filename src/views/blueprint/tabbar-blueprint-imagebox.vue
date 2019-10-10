@@ -1,8 +1,11 @@
 <template>
 	<div class="container">
 		<img class="blueprint_image load_image" style="z-index: 1000;" v-lazy="image_blueprint" />
-		<img class="blueprint_image load_image" style="z-index: 1001;" v-show="show_house_appreciation" v-lazy="image_house_appreciation" />
-		<img class="blueprint_image load_image" style="z-index: 1002;" v-if="image_present.length > 0" v-show="show_present" v-lazy="image_present" />
+		<img class="blueprint_image load_image" style="z-index: 1001;" v-show="show_house_appreciation" :src="image_house_appreciation" />
+		<img class="blueprint_image load_image" style="z-index: 1002;" v-if="image_present.length > 0" v-show="show_present" :src="image_present" />
+		<img class="blueprint_image load_image" style="z-index: 1003;" v-if="image_ventilate.length > 0" v-show="show_ventilate" :src="image_ventilate" />
+		<img class="blueprint_image load_image" style="z-index: 1004;" v-show="show_direction" :src="image_direction" />
+		<img class="blueprint_image load_image" style="z-index: 1005;" v-show="show_glittering" :src="image_glittering" />
 	</div>
 </template>
 
@@ -14,34 +17,53 @@
 				image_blueprint:"",
 				image_house_appreciation:"",
 				image_present:"",
+				image_ventilate:"",
+				image_direction:"",
+				image_glittering:"",
 				show_house_appreciation:false,
-				show_present:false
+				show_present:false,
+				show_ventilate: false,
+				show_direction: false,
+				show_glittering: false
 			}
 		},
 		methods:{
-			setValue(_image_blueprint = "", _image_house_appreciation = "", _image_present = ""){
-				this.image_blueprint = "";
-				this.image_house_appreciation = "";
-				this.image_present = "";
-				
-				this.image_blueprint = _image_blueprint;
-				this.image_house_appreciation = _image_house_appreciation;
-				this.image_present = _image_present;
+			setValue(_house){
+				this.image_blueprint = _house.image_bp;
+				this.image_house_appreciation = _house.image_house_appreciation;
+				this.image_present = _house.image_present;
+				this.image_direction = _house.image_direction;
+				this.image_ventilate = _house.image_ventilate;
+				this.image_glittering = _house.image_glittering;
 			},
-			initImageBox(house_appreciation, present){
-				this.show_house_appreciation = house_appreciation;
-				this.show_present = present;
+			initImageBox(_house){
+				this.show_house_appreciation = _house.show_house_appreciation;
+				this.show_present = _house.show_present;
+				this.show_direction = _house.show_direction;
+				this.show_glittering = _house.show_glittering;
+				this.show_ventilate = _house.show_ventilate;
 			},
 			showHouseAppreciation(flag){
 				this.show_house_appreciation = flag;
+			},
+			showDirection(flag){
+				this.show_direction = flag;
+			},
+			showGlittering(flag){
+				this.show_glittering = flag;
 			},
 			showPresent(flag){
 				if (this.image_present.length > 0){
 					this.show_present = flag;
 				}
 			},
+			showVentilate(flag){
+				if (this.image_ventilate.length > 0){
+					this.show_ventilate = flag;
+				}
+			},
 			onLoading(el){
-				console.log(el);
+				// console.log(el);
 			}
 		},
 		created() {

@@ -31,10 +31,10 @@
 			}
 		},
 		methods:{
-			setValue(_type, _house_type, _house_discription){
+			setValue(_type, _house){
 				this.type = _type;
-				this.house_type = _house_type;
-				this.house_discription = _house_discription;
+				this.house_type = _house.house_type;
+				this.house_discription = _house.house_discription;
 			}
 		},
 		components:{

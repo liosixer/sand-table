@@ -8,7 +8,7 @@
 				<van-button @click="onClickSize" :disabled="disableHouseAppreciation">户型尺寸</van-button>
 			</van-col>
 		  <van-col span="10" align="center">
-				<van-button disabled>通风演示</van-button>
+				<van-button @click="onClickVentilate" :disabled="disableVentilate">通风演示</van-button>
 			</van-col>
 		</van-row>
 		<van-row style="height: 33.3%;" type="flex" align="center" justify="center">
@@ -16,12 +16,12 @@
 		  	<van-button @click="onClickSquare" :disabled="disablePresent">赠送面积</van-button>
 		  </van-col>
 		  <van-col span="10" align="center">
-		  	<van-button disabled>朝向显示</van-button>
+		  	<van-button @click="onClickDirection" :disabled="disableDirection">朝向显示</van-button>
 		  </van-col>
 		</van-row>
 		<van-row style="height: 33.4%;" type="flex" align="center" justify="center">
 		  <van-col span="10" align="center">
-		  	<van-button disabled>户型亮点</van-button>
+		  	<van-button @click="onClickGlittering" :disabled="disableGlittering">户型亮点</van-button>
 		  </van-col>
 		  <van-col span="10" align="center">
 		  	<van-button disabled>公摊面积</van-button>
@@ -32,7 +32,11 @@
 
 <script>
 	import { Row, Col } from 'vant';
-	import { BLUEPRINT_MODULE_SHOW_HOUSE_APPRECIATION, BLUEPRINT_MODULE_SHOW_PRESENT } from "../../events/events.js";
+	import { BLUEPRINT_MODULE_SHOW_HOUSE_APPRECIATION, 
+	BLUEPRINT_MODULE_SHOW_PRESENT, 
+	BLUEPRINT_MODULE_SHOW_DIRECTION, 
+	BLUEPRINT_MODULE_SHOW_GLITTERING,
+	BLUEPRINT_MODULE_SHOW_VENTILATE} from "../../events/events.js";
 	export default{
 		name:"blueprint-buttongroup",
 		data(){
@@ -41,6 +45,12 @@
 				disableHouseAppreciation: true,
 				showPresent: true,
 				disablePresent: true,
+				showVentilate:true,
+				disableVentilate: true,
+				showGlittering:true,
+				disableGlittering: true,
+				showDirection: true,
+				disableDirection: true,
 			}
 		},
 		methods:{
@@ -55,13 +65,34 @@
 				this.$toast(this.showPresent ? "显示赠送面积" : "隐藏赠送面积");
 				this.$bus.$emit(BLUEPRINT_MODULE_SHOW_PRESENT, this.showPresent);
 			},
-			setValue(houseAppreciation, present){
-				this.showHouseAppreciation = houseAppreciation;
-				this.showPresent = present;
+			onClickDirection(){
+				this.showDirection = !this.showDirection;
+				this.$toast(this.showDirection ? "显示朝向" : "隐藏朝向积");
+				this.$bus.$emit(BLUEPRINT_MODULE_SHOW_DIRECTION, this.showDirection);
 			},
-			initButtons(houseAppreciation, present){
-				this.disableHouseAppreciation = !houseAppreciation ;
-				this.disablePresent = !present;
+			onClickVentilate(){
+				this.showVentilate = !this.showVentilate;
+				this.$toast(this.showVentilate ? "显示通风演示" : "隐藏通风演示");
+				this.$bus.$emit(BLUEPRINT_MODULE_SHOW_VENTILATE, this.showVentilate);
+			},
+			onClickGlittering(){
+				this.showGlittering = !this.showGlittering;
+				this.$toast(this.showGlittering ? "显示户型亮点" : "隐藏户型亮点");
+				this.$bus.$emit(BLUEPRINT_MODULE_SHOW_GLITTERING, this.showGlittering);
+			},
+			setValue(house){
+				this.showHouseAppreciation = house.showHouseAppreciation;
+				this.showPresent = house.showPresent;
+				this.showDirection = house.showDirection;
+				this.showGlittering = house.showGlittering;
+				this.showVentilate = house.showVentilate;
+			},
+			initButtons(house){
+				this.disableHouseAppreciation = !house.image_house_appreciation.length > 0;
+				this.disablePresent = !house.image_present.length > 0;
+				this.disableVentilate = !house.image_ventilate.length > 0;
+				this.disableGlittering = !house.image_glittering.length > 0;
+				this.disableDirection = !house.image_direction.length > 0;
 			}
 		},
 		components:{
