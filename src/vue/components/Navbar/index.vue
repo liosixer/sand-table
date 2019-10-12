@@ -10,7 +10,7 @@
 	export default {
 		data() {
 			return{
-				title: "微沙盘",
+				title: "e沙盘",
 				fixed: true
 			};
 		},
