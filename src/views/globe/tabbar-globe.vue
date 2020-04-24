@@ -43,7 +43,7 @@ export default {
 						}
 					};
 				})(frame, callback),
-				1000
+				500
 			);
 		},
 		resizeFrame() {
